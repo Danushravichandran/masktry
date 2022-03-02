@@ -102,31 +102,31 @@ function init_threeScene(spec) {
   // have more control over the three parts of our dog model
   const loadingManager = new THREE.LoadingManager();
 
-  const loaderEars = new THREE.BufferGeometryLoader(loadingManager);
+  //const loaderEars = new THREE.BufferGeometryLoader(loadingManager);
 
-  loaderEars.load(
+ // loaderEars.load(
     //'./models/dog/dog_ears.json',
-    function (geometry) {
-      const mat = new THREE.FlexMaterial({
-        map: new THREE.TextureLoader().load('./models/dog/texture_ears.jpg'),
-        flexMap: new THREE.TextureLoader().load('./models/dog/flex_ears_256.jpg'),
-        alphaMap: new THREE.TextureLoader().load('./models/dog/alpha_ears_256.jpg'),
-        transparent: true,
-        opacity: 1,
-        bumpMap: new THREE.TextureLoader().load('./models/dog/normal_ears.jpg'),
-        bumpScale: 0.0075,
-        shininess: 1.5,
-        specular: 0xffffff,
-      });
+   // function (geometry) {
+     // const mat = new THREE.FlexMaterial({
+       // map: new THREE.TextureLoader().load('./models/dog/texture_ears.jpg'),
+   //     flexMap: new THREE.TextureLoader().load('./models/dog/flex_ears_256.jpg'),
+     //   alphaMap: new THREE.TextureLoader().load('./models/dog/alpha_ears_256.jpg'),
+      //  transparent: true,
+     //   opacity: 1,
+      //  bumpMap: new THREE.TextureLoader().load('./models/dog/normal_ears.jpg'),
+      //  bumpScale: 0.0075,
+     //   shininess: 1.5,
+    //    specular: 0xffffff,
+    //  });
 
-      EARMESH = new THREE.Mesh(geometry, mat);
-      EARMESH.scale.multiplyScalar(0.025);
-      EARMESH.position.setY(-0.3);
-      EARMESH.frustumCulled = false;
-      EARMESH.renderOrder = 10000;
-      EARMESH.material.opacity.value = 1;
-    }
-  );
+//      EARMESH = new THREE.Mesh(geometry, mat);
+ //     EARMESH.scale.multiplyScalar(0.025);
+   //   EARMESH.position.setY(-0.3);
+     // EARMESH.frustumCulled = false;
+  //    EARMESH.renderOrder = 10000;
+   //   EARMESH.material.opacity.value = 1;
+ //   }
+ // );
   // CREATE OUR DOG NOSE
   const loaderNose = new THREE.BufferGeometryLoader(loadingManager);
 
@@ -151,49 +151,49 @@ function init_threeScene(spec) {
   );
 
   // CREATE OUR DOG TONGUE
-  const loaderTongue = new THREE.JSONLoader(loadingManager);
+  //const loaderTongue = new THREE.JSONLoader(loadingManager);
 
-  loaderTongue.load(
+//  loaderTongue.load(
    // 'models/dog/dog_tongue.json',
-    function (geometry) {
-      geometry.computeMorphNormals();
-      const mat = new THREE.FlexMaterial({
-        map: new THREE.TextureLoader().load('./models/dog/dog_tongue.jpg'),
-        flexMap: new THREE.TextureLoader().load('./models/dog/flex_tongue_256.png'),
-        alphaMap: new THREE.TextureLoader().load('./models/dog/tongue_alpha_256.jpg'),
-        transparent: true,
-        morphTargets: true,
-        opacity: 1
-      });
+ //   function (geometry) {
+  //    geometry.computeMorphNormals();
+   //   const mat = new THREE.FlexMaterial({
+  //      map: new THREE.TextureLoader().load('./models/dog/dog_tongue.jpg'),
+  //      flexMap: new THREE.TextureLoader().load('./models/dog/flex_tongue_256.png'),
+  //      alphaMap: new THREE.TextureLoader().load('./models/dog/tongue_alpha_256.jpg'),
+  //      transparent: true,
+   //     morphTargets: true,
+    //    opacity: 1
+    //  });
 
-      TONGUEMESH = new THREE.Mesh(geometry, mat);
-      TONGUEMESH.material.opacity.value = 0;
+      //TONGUEMESH = new THREE.Mesh(geometry, mat);
+      //TONGUEMESH.material.opacity.value = 0;
 
-      TONGUEMESH.scale.multiplyScalar(2);
-      TONGUEMESH.position.setY(-0.28);
+    //  TONGUEMESH.scale.multiplyScalar(2);
+    //  TONGUEMESH.position.setY(-0.28);
 
-      TONGUEMESH.frustumCulled = false;
-      TONGUEMESH.visible = false;
+  //    TONGUEMESH.frustumCulled = false;
+  //    TONGUEMESH.visible = false;
 
-      if (!MIXER) {
+    //  if (!MIXER) {
         // the mixer is declared globally so we can use it in the THREE renderer
-        MIXER = new THREE.AnimationMixer(TONGUEMESH);
-        const clips = TONGUEMESH.geometry.animations;
+      //  MIXER = new THREE.AnimationMixer(TONGUEMESH);
+   //     const clips = TONGUEMESH.geometry.animations;
 
-        const clip = clips[0];
+//        const clip = clips[0];
 
-        ACTION = MIXER.clipAction(clip);
-        ACTION.noLoop = true;
+  //      ACTION = MIXER.clipAction(clip);
+    //    ACTION.noLoop = true;
 
-        ACTION.play();
-      }
-    }
-  );
+      //  ACTION.play();
+   //   }
+  //  }
+ // );
 
   loadingManager.onLoad = () => {
-    DOGOBJ3D.add(EARMESH);
+   // DOGOBJ3D.add(EARMESH);
     DOGOBJ3D.add(NOSEMESH);
-    DOGOBJ3D.add(TONGUEMESH);
+  //  DOGOBJ3D.add(TONGUEMESH);
 
     addDragEventListener(DOGOBJ3D);
 
